@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaDaoImpl implements CategoriaDao {
@@ -39,7 +40,18 @@ public class CategoriaDaoImpl implements CategoriaDao {
 
     @Override
     public Integer updateById(Categoria categoria) {
-        return 0;
+        PreparedStatement preparedStatement = null;
+        try{
+            String sqlUpdateById = "Update categoria set nome = ? where id = ?";
+            preparedStatement = connection.prepareStatement(sqlUpdateById);
+            preparedStatement.setString(1,categoria.getNome());
+            preparedStatement.setInt(2,categoria.getId());
+            return preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            throw new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+        }
     }
 
     @Override
@@ -88,7 +100,24 @@ public class CategoriaDaoImpl implements CategoriaDao {
 
     @Override
     public List<Categoria> findAll() {
-        return List.of();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Categoria>allCategoria = new ArrayList<>();
+        try{
+            String sqlFindAll = "Select * from categoria";
+            preparedStatement = connection.prepareStatement(sqlFindAll);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                allCategoria.add(getCategoria(resultSet));
+            }
+            return allCategoria;
+
+        }catch (SQLException e){
+            throw new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+            DB.closeResultSet(resultSet);
+        }
     }
 
     private Categoria getCategoria(ResultSet resultSet){
