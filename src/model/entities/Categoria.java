@@ -9,9 +9,9 @@ public class Categoria {
 
     public Categoria(){}
 
-    public Categoria(String nome, Integer id) {
-        this.nome = nome;
+    public Categoria( Integer id, String nome) {
         this.id = id;
+        this.nome = nome;
     }
 
     public Integer getId() {

@@ -1,11 +1,13 @@
 package model.dao;
 
+import model.entities.Categoria;
+
 import java.util.List;
 
 public interface CategoriaDao {
-    public void insert(CategoriaDao categoria);
-    public Integer updateById(CategoriaDao categoria);
+    public void insert(Categoria categoria);
+    public Integer updateById(Categoria categoria);
     public Integer deleteById(int id);
-    CategoriaDao findById(int id);
-    List<CategoriaDao> findAll();
+    Categoria findById(int id);
+    List<Categoria> findAll();
 }
