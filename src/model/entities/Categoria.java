@@ -44,7 +44,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "CategoriaDao{" +
+        return "Categoria{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 '}';
