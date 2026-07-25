@@ -1,5 +1,6 @@
 package model.entities;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class Client {
@@ -8,11 +9,11 @@ public class Client {
     private String name;
     private Integer contact;
     private String location;
-    private LocalDate birthDay;
+    private Date birthDay;
 
     public Client(){}
 
-    public Client(Integer id, String name, Integer contact, String location, LocalDate birthDay) {
+    public Client(Integer id, String name, Integer contact, String location, Date birthDay) {
         this.id = id;
         this.name = name;
         this.contact = contact;
@@ -52,11 +53,11 @@ public class Client {
         this.location = location;
     }
 
-    public LocalDate getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 
