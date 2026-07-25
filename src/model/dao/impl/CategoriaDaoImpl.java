@@ -44,7 +44,24 @@ public class CategoriaDaoImpl implements CategoriaDao {
 
     @Override
     public Integer deleteById(int id) {
-        return 0;
+        PreparedStatement preparedStatement = null;
+        findById(id);
+        try{
+            String sqlDeleteById = "Delete from categoria where id = ?";
+            preparedStatement = connection.prepareStatement(sqlDeleteById);
+            preparedStatement.setInt(1,id);
+            int rows = preparedStatement.executeUpdate();
+            if (rows > 0){
+                System.out.println("Delete completed : ");
+                return rows;
+            }else{
+                throw new DBException("Don't found Id");
+            }
+        }catch (SQLException e){
+            throw  new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+        }
     }
 
     @Override

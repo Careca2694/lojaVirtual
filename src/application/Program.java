@@ -20,9 +20,11 @@ public class Program {
         Categoria categoria = new Categoria(null,"Construcao");
        // categoriaDao.insert(categoria);
         Categoria FindById = categoriaDao.findById(5);
+        int delteById = categoriaDao.deleteById(2);
 
         System.out.println("Insercao completed : " + categoria);
         System.out.println("Categoria encontrada : " + FindById);
+        System.out.println("Delete completed : " + delteById);
 
         DB.closeConnection();
     }
