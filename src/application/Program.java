@@ -18,9 +18,11 @@ public class Program {
          DB.getConnection();
         CategoriaDao categoriaDao = DaoFactory.createCategoriaDao();
         Categoria categoria = new Categoria(null,"Construcao");
-        categoriaDao.insert(categoria);
+       // categoriaDao.insert(categoria);
+        Categoria FindById = categoriaDao.findById(5);
 
         System.out.println("Insercao completed : " + categoria);
+        System.out.println("Categoria encontrada : " + FindById);
 
         DB.closeConnection();
     }
