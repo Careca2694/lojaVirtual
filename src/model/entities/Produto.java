@@ -8,13 +8,13 @@ public class Produto {
     private String name;
     private Integer quantity;
     private Double price;
-    private Categoria category;
+    private Integer category;
 
     public Produto(){
 
     }
 
-    public Produto(Integer id, String name, Integer quantity, Double price, Categoria category) {
+    public Produto(Integer id, String name, Integer quantity, Double price, int category) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -54,11 +54,11 @@ public class Produto {
         this.price = price;
     }
 
-    public Categoria getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(Categoria category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
