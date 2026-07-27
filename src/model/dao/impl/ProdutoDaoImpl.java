@@ -40,12 +40,38 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public Integer updateById(Produto produto) {
-        return 0;
+        PreparedStatement preparedStatement = null;
+        findById(produto.getId());
+        try{
+            String sqlUpdateById = "Update produto set nome = ?, quantidade = ?, preco = ?, categoriaId = ? where id =?";
+            preparedStatement = connection.prepareStatement(sqlUpdateById);
+            preparedStatement.setString(1,produto.getName());
+            preparedStatement.setInt(2,produto.getQuantity());
+            preparedStatement.setDouble(3,produto.getPrice());
+            preparedStatement.setInt(4,produto.getCategory());
+            preparedStatement.setInt(5,produto.getId());
+            return preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            throw new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+        }
     }
 
     @Override
     public Integer deleteById(int id) {
-        return 0;
+        PreparedStatement preparedStatement = null;
+        findById(id);
+        try{
+            String sqlDeleteById = "Delete from produto where id = ?";
+            preparedStatement = connection.prepareStatement(sqlDeleteById);
+            preparedStatement.setInt(1,id);
+            return preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            throw new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+        }
     }
 
     @Override

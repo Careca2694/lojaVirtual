@@ -29,6 +29,10 @@ public class Program {
         Produto prod2 = produtoDao.findById(1);
         System.out.println("Produto com id: " + prod2 + " encontrado");
 
+        Produto prod1 = new Produto(4,"sapatos",12,4490.50,3);
+        produtoDao.updateById(prod1);
+        int del = produtoDao.deleteById(5);
+        System.out.println("Deleted completed." + del);
 
 
         DB.closeConnection();
