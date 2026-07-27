@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDaoImpl implements ClientDao {
@@ -121,6 +122,24 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public List<Client> findAll() {
-        return List.of();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Client> allClients = new ArrayList<>();
+        try{
+            String sqlFindAll = "Select * from lojavirtual.cliente";
+            preparedStatement = connection.prepareStatement(sqlFindAll);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                allClients.add(getCliente(resultSet));
+            }
+            return allClients;
+
+        }catch(SQLException e){
+            throw new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+            DB.closeResultSet(resultSet);
+        }
     }
 }

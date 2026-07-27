@@ -41,18 +41,24 @@ public class Program {
 //            System.out.println("All category: " + ct);
 //        }
 
-        ClientDao clientDao = DaoFactory.createClientDao();
-       // Client client = new Client(null,"Firmas",833192002,"Costa do sol",new Date());
-        //clientDao.insert(client);
-        System.out.println("Cliente inserido com successo: ");
+          ClientDao clientDao = DaoFactory.createClientDao();
+//        Client client = new Client(null,"Ayden firmino",873885888,"Laulane",new Date());
+//        clientDao.insert(client);
+//        System.out.println("Cliente inserido com successo: ");
 
-        Client client = clientDao.findById(1);
-        System.out.println("Id encontrado : " + client);
-        Client newClient = new Client(1,"Felisberto",844093368,"Laulane",new Date());
-       clientDao.updateById(newClient);
-        System.out.println("Cliente atualizado com successo: " + newClient);
-        int id = clientDao.deleteById(1);
-        System.out.println("Deleted completed: " + id);
+//        Client client = clientDao.findById(1);
+//        System.out.println("Id encontrado : " + client);
+//        Client newClient = new Client(1,"Felisberto",844093368,"Laulane",new Date());
+//       clientDao.updateById(newClient);
+//        System.out.println("Cliente atualizado com successo: " + newClient);
+//        int id = clientDao.deleteById(1);
+//        System.out.println("Deleted completed: " + id);
+          List<Client>list;
+          list = clientDao.findAll();
+
+          for(Client cli : list){
+              System.out.println("Todos cliente " + cli);
+          }
 
 
 
