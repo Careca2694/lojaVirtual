@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDaoImpl implements ProdutoDao {
@@ -115,6 +116,23 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
     @Override
     public List<Produto> findAll() {
-        return List.of();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Produto> allProdutos = new ArrayList<>();
+        try{
+            String sqlFindAll = "Select * from lojavirtual.produto";
+            preparedStatement = connection.prepareStatement(sqlFindAll);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                allProdutos.add(getProdutos(resultSet));
+            }
+            return allProdutos;
+
+        }catch (SQLException e){
+            throw new DBException(e.getMessage());
+        }finally {
+            DB.closeStatment(preparedStatement);
+            DB.closeResultSet(resultSet);
+        }
     }
 }

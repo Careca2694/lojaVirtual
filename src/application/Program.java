@@ -31,8 +31,15 @@ public class Program {
 
         Produto prod1 = new Produto(4,"sapatos",12,4490.50,3);
         produtoDao.updateById(prod1);
-        int del = produtoDao.deleteById(5);
-        System.out.println("Deleted completed." + del);
+//        int del = produtoDao.deleteById(5);
+//        System.out.println("Deleted completed." + del);
+
+        List<Produto> allP;
+        allP = produtoDao.findAll();
+
+        for(Produto prods : allP){
+            System.out.println("Todos produtos: " + prods);
+        }
 
 
         DB.closeConnection();
